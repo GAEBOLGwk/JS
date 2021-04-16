@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01</title>
+	<style type="text/css">
+		.wrap {
+			width: 800px;
+			height: 400px;
+			position: relative;
+		}
+		ul {
+			list-style: none;
+		}
+		.list {
+			width: 800px;
+			height: 400px;
+			position: relative;
+			padding-left: 0;
+		}
+		.item {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			color: #fff;
+			font-size: 50px;
+			opacity: 0;
+			transition: all .5s;
+			/*淡入淡出*/
+		}
+		.item:nth-child(1){
+			background-color: black;
+		}
+		.item:nth-child(2){
+			background-color: yellow;
+		}
+		.item:nth-child(3){
+			background-color: pink;
+		}
+		.item:nth-child(4){
+			background-color: orange;
+		}
+		.item:nth-child(5){
+			background-color: green;
+		}
+		.btn {
+			width: 40px;
+			height: 40px;
+			position: absolute;
+			top: 180px;
+			z-index: 1000;
+		}
+		#gePre {
+			left: 0px;
+		}
+		#geNext {
+			right: 0px;
+		}
+		.item.active {
+			opacity: 1;
+			z-index: 100;
+		}
+		/*以下为圆点样式*/
+		.pointList {
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+			z-index: 1000;
+		}
+		.point {
+			display: block;
+			width: 10px;
+			height: 10px;
+			background-color: #666;
+			float: left;
+			margin-left: 20px;
+			border-radius: 50%;
+			border: 1px solid #fff;
+		}
+		.point.active {
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="list">
+			<li class="item active">1</li>
+			<li class="item">2</li>
+			<li class="item">3</li>
+			<li class="item">4</li>
+			<li class="item">5</li>
+		</ul>
+		<ul class="pointList">
+			<li class="point active" data-index="0"></li>
+			<li class="point" data-index="1"></li>
+			<li class="point" data-index="2"></li>
+			<li class="point" data-index="3"></li>
+			<li class="point" data-index="4"></li>	
+		</ul>
+		<button type="button" class="btn" id="gePre"><</button>
+		<button type="button" class="btn" id="geNext">></button>
+	</div>
+</body>
+	<script type="text/javascript">
+		var items = document.getElementsByClassName('item');//图片
+		var points = document.getElementsByClassName('point');//点
+		var gePre = document.getElementById('gePre');
+		var geNext = document.getElementById('geNext');
+ 
+		var index = 0;//表示第几张图片  加上active类名
+ 
+		var clearActive = function(){
+			// 清楚图片的active类名
+			for(var i=0;i<items.length;i++){
+				items[i].className='item';
+			}
+			// 清楚点的active类名
+			for(var i=0;i<points.length;i++){
+				points[i].className='point';
+			}
+		}
+ 
+		var goIndex = function(){
+			clearActive();
+			items[index].className = 'item active';
+			points[index].className = 'point active';//该index下的点设置point active 类名
+		}
+		// 进行下一张
+		var goNext = function(){
+			if(index < 4){
+				index++;
+			}else{
+				index = 0;
+			}
+			
+			goIndex();
+		}
+		// 进行上一张
+		var goPre = function(){
+			if(index == 0){
+				index = 4;
+			}else{
+				index--;
+			}
+			goIndex();
+		}
+ 
+		geNext.addEventListener('click',function(){
+			goNext();
+		})
+		gePre.addEventListener('click',function(){
+			goPre();
+		})
+ 
+		// ------圆点行为-----对每一个圆点设置监听----
+		for(var i = 0;i < points.length;i++){
+			points[i].addEventListener('click',function(){
+				index = this.getAttribute('data-index');
+				goIndex();
+			})
+		}
+ 
+	</script>
+</html>

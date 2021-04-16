@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    .calender{
+        width: 200px;
+        position: relative;
+        background: #cccccc;
+        text-align: center;
+        border-radius: 20px;
+        overflow: hidden;
+        -webkit-box-reflect: below 1px ;
+    }
+</style>
+<body>
+
+
+    
+    <div class="calender">
+        <p id="monthname"></p>
+        <p id="yearname"></p>
+        <p id="timename"></p>
+    </div>
+    <script>
+        const lang = navigator.language
+        var date = new Date()
+        let month = date.toLocaleString(lang,{weekday:'long'})
+        let year = date.getFullYear()
+        let time = date.toLocaleString(lang,{month:'long'})
+
+        console.log(date)
+        console.log(time)
+   
+        document.getElementById('timename').innerHTML = time
+        document.getElementById('yearname').innerHTML = year
+        document.getElementById('monthname').innerHTML = month
+    </script>
+</body>
+</html>

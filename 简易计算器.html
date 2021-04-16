@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="num1" value="2">
+        <select name="" id="symbol">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" id="num2" value="1">
+        <span>=</span>
+        <input type="text" id="result" value="3">
+        <button id="start">计算</button>
+    </div>
+    <script>
+        document.getElementById('start').onclick=function(){
+
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var symbol =document.getElementById('symbol').value;
+
+            var num1 = parseFloat(num1);
+            var num2 = parseFloat(num2);
+            // console.log(result);
+            switch(symbol){
+                case '+':result = (num1+num2);break;
+                case '-':result = (num1-num2);break;
+                case '*':result = (num1*num2);break;
+                case '/':result = (num1/num2);break;
+            }
+            document.getElementById('result').value=result;
+        }
+        
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        width: 500px;
+        margin: 100px auto;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    td,th {
+        border: 1px solid #333;
+    }
+    thead tr {
+        height: 40px;
+        background-color: #ccc;
+    }
+    .wrap{
+        text-align: center;
+    }
+    #mask{
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(180, 179, 179, 0.8);
+    }
+    #box-wrap{
+        position: absolute;
+        right: 39%;
+        top: 30%;
+        width: 300px;
+        height: 300px;
+        border: 1px solid #fff;
+    }
+    .item{
+        position: relative;
+        text-align: center;
+    }
+    #close{
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 5px;
+    }
+    p{
+        text-align: center;
+    }
+</style>
+<body>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+            <tr>
+                <td>wangkai</td>
+                <td>js</td>
+                <td>100</td>
+                <td><a>删除</a></td>
+            </tr>
+            <tr>
+                <td>wangkai</td>
+                <td>js</td>
+                <td>100</td>
+                <td><a>删除</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="wrap">
+        <button id="btn">添加</button>
+    </div>
+    <div id="mask">
+        <div id="box-wrap">
+            <p>添加数据</p>
+            <div id="close">X</div>
+            <div class="item">
+                <label for=""> 姓名</label>
+                <input type="text" id="name" placeholder="wangkai">
+            </div>
+            <div class="item">
+                <label for=""> 科目</label>
+                <input type="text" id="subject" placeholder="js">
+            </div>
+            <div class="item">
+                <label for=""> 成绩</label>
+                <input type="text" id="score" placeholder="100">
+            </div>
+            <div class="wrap"><button id="start">添加</button></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('close').onclick = function(){
+            document.getElementById('mask').style.display = "none";
+        }
+        document.getElementById('btn').onclick = function(){
+            document.getElementById('mask').style.display = "block";
+        }
+
+        document.getElementById('start').onclick = function(){
+            let name = document.getElementById('name').value;
+            let subject = document.getElementById('subject').value;
+            let score = document.getElementById('score').value;
+
+            // let name2 = document.getElementById('name');
+            // let subject2 = document.getElementById('subject');
+            // let score2 = document.getElementById('score');
+            // let name = name2.value;
+            // let subject = subject2.value;
+            // let score = score2.value;
+            // console.log(name);
+
+            let tr = document.createElement('tr');
+            let tbody = document.getElementById('tb');
+            tbody.appendChild(tr);
+
+            // name
+            let name1 = document.createElement('td');
+            let text = document.createTextNode(name);
+            name1.appendChild(text);
+            tr.appendChild(name1);
+            // subject
+            let subject1 = document.createElement('td');
+            let text1 = document.createTextNode(subject);
+            subject1.appendChild(text1);
+            tr.appendChild(subject1);
+            // score
+            let score1 = document.createElement('td');
+            let text2 = document.createTextNode(score);
+            score1.appendChild(text2);
+            tr.appendChild(score1);
+            // lastcol
+            let lastcol = document.createElement('td');
+            let a1 = document.createElement('a');
+            let text3 = document.createTextNode('删除');
+            a1.appendChild(text3);
+            a1.onclick = function() {
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+            }
+
+            lastcol.appendChild(a1);
+            tr.appendChild(lastcol);
+            
+
+            console.log(name);
+            name = '';
+            subject = '';
+            score = '';
+            console.log(name);
+
+            // name.value = '';
+            // subject.value = '';
+            // score.value = '';
+
+            document.getElementById('mask').style.display ="none";
+        }
+        // 获取元素
+        var as = document.querySelectorAll('a');
+        // 添加事件
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function() {
+                this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+                // 通过父节点删除子节点 这里this就是as->a a.td.tr.tbody.removeChild(a.td.tr)
+                // 就相当于tbody.removeChild(tr)
+            }
+        }
+    </script>
+</body>
+</html>

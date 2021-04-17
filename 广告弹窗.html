@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 3090px;
+        height: 300px;
+        border: 1px solid ;
+    }
+</style>
+<body>
+    <div class="box">
+        广告弹窗
+    </div>
+    <script>
+        var sub = '';
+        setTimeout(() => {
+            sub = window.open('','-blank', 'width =300,height = 300,left = 0.top = 0');
+            // open(url,name,弹窗信息)
+            let w = window.outerWidth/2-sub.outerWidth/2;
+            let h = window.outerHeight/2-sub.outerHeight/2;
+            sub.moveTo(w,h);
+        }, 3000);
+        setTimeout(() => {
+            if(!sub.closed){
+                sub.close();
+            }
+        }, 5000);
+
+    </script>
+</body>
+</html>

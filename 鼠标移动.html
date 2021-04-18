@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #text{
+        width: 30px;
+        height: 30px;
+        background: #000;
+    }
+</style>
+<body>
+<div id="text" style="position: absolute;"></div>
+<script>
+    window.onmousemove = function (e) {
+        var event = e || window.event;
+        console.log(event.screenX)
+    }
+    move()
+    function move() {
+        document.addEventListener('mousemove',function (e) {
+            var movediv = document.getElementById('text');
+            movediv.style.left= e.clientX + 8 + "px";
+            movediv.style.top= e.clientY + 8 + "px";
+        })
+    }
+
+</script>
+</body>
+</html>

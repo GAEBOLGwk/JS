@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- <script src="./jquery-3.4.1.js"></script> -->
+</head>
+<style>
+    #dv{
+        width: 800px;
+        height: 500px;
+        position: absolute;
+        background: #888;
+        top: 100px;
+        left: 100px;
+    }
+    /*.di{*/
+    /*    'background':'red',*/
+    /*        'border-radius':'50%',*/
+    /*        'position':'absolute',*/
+    /*        'width':'50px',*/
+    /*        'height':'50px',*/
+    /*        'left':'30px',*/
+    /*        'top':'30px',*/
+    /*}*/
+</style>
+<body>
+
+<button id="btn">弹出小球</button>
+<div id="dv"></div>
+
+<script>
+    var colors = ['red','#7e7e7e','#888','#eee','green','yellow']
+    var dv = document.getElementById('dv');
+    document.getElementById('btn').onclick = function () {
+        var di = document.createElement("div");
+        di.style.cssText='border-radius:50%;position:absolute';
+        di.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+        di.style.width='40px';
+        di.style.height='40px';
+
+        // 如果csstext没有在最前面放着就会导致不显示 ，不知道为什么
+        // di.style.cssText='border-radius:50%;position:absolute';
+        dv.appendChild(di);
+        var top = dv.clientHeight/2 - di.offsetHeight/2;
+        var left = dv.clientWidth/2 - di.offsetWidth/2;
+
+        di.style.top=top + 'px';
+        di.style.left=left + 'px';
+        var x = Math.floor(Math.random()*10)+1;
+        var y = Math.floor(Math.random()*10)+1;
+        setInterval(function () {
+            left+=x;
+            top+=y;
+            if(left<0||left >(dv.offsetWidth - di.offsetWidth)){
+                x = -x;
+            }
+            if(top<0||top >(dv.offsetHeight - di.offsetHeight)){
+                y = -y;
+            }
+            di.style.top=top + 'px';
+            di.style.left=left + 'px';
+
+        },30)
+
+    }
+
+
+
+
+
+    // $('#btn').click(function () {
+    //  var div = $('#dv').append('<div></div>');
+    //  一样的效果
+    //     var div = $('#dv').appendChild($('div'));
+    //     div.css({
+    //         'background':'red',
+    //         'border-radius':'50%',
+    //         'position':'absolute',
+    //         'width':'50px',
+    //         'height':'50px',
+    //         'left':'30px',
+    //         'top':'30px',
+    //     })
+    // })
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(#38e4e4,#8552e4);
+    }
+    .text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+    }
+    .g{
+        color: black;
+        animation: flash 1s linear infinite ;
+    }
+    @keyframes flash {
+        from{
+            opacity: 0;
+        }to{
+            opacity: 1;
+        }
+    }
+</style>
+<body>
+    <div class="text">
+        <span class="word" id="q"></span><span class="g">|</span>
+    </div>
+    <script>
+        let str ='我是chris，一个简单快乐的程序员'
+       //var word = document.querySelector('.word');
+        //的区别
+        //var word = document.getElementsByClassName('word');
+        var word = document.getElementById('q');
+        for(let i = 1;i <=str.length;i++){
+            setTimeout(function(){
+                word.innerHTML = str.substr(0,i);
+            },(i-1)*300)
+        }
+    </script>
+</body>
+</html>

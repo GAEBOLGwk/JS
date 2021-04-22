@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=&encode=js&fun=sync&source="></script>
+<!-- 步骤
+准备一段文字放在string容器中，并隐藏string容器
+一个一个读取string容器中的内容，显示到showStr1容器中
+用定时器逐字显示
+将showStr放在你想展示的位置即可；
+如果要改变样式，修改showStr容器style -->
+<body>
+    <h>用来显示逐渐出现的文字</h>
+    <p id="show"></p>
+<div style="display:none" id="hitokoto"><script>hitokoto()</script></div>
+<!-- 上面的意思是 通过引入一言的api但是未调用  hitokoto() 调用了类似每日一句的函数 -->
+<!-- 而且将这个函数放到这个div里是因为他要每打印一个字在重新调用这个函数来获取这些字 -->
+<script>
+    // 方法一
+    var index = 0;
+    var str = document.getElementById("hitokoto").innerText;
+    str = str.substring(10, str.length);    //裁剪hitokoto()字样
+    function type() {
+      if(index === str.length) {
+          index = 0;
+        }
+        document.getElementById("show").innerText = str.substring(0, index++);
+        console.log(document.getElementById("show").innerText);
+    }
+    setInterval(type, 200); //通过定时器来让文字逐步显示
+</script>
+
+<!-- <script>
+  // 方法二
+  var str = document.querySelector("#hitokoto span").innerHTML
+  var show = document.getElementById("show")
+  for(let i =0; i<str.length; i++){
+    setTimeout(function(){
+      show.innerHTML = str.substr(0,i)
+            },(i-1)*300)
+  }
+</script> -->
+
+</body>
+</html>

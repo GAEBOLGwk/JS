@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--主要是看html的运用方式 他们的调用方法-->
+<!--判断函数-->
+<script type="text/javascript">
+	function notNull() {
+        if (document.keyinput.skey.value.toString().trim().length <= 0) {
+              alert("您未输入关键词！");
+              document.keyinput.skey.focus();
+              return false;
+            }else {
+              return true;
+          }
+     }
+</script>
+<!--表单部分-->
+<form action="/****/*****" method="post" name="keyinput">
+    <input type="text" name="skey" placeholder="请输入审查关键字" >
+    <button class="btn btn-default" type="submit" onclick="return notNull()">提交</button>
+</form>
+
+
+
+</body>
+</html>

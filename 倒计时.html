@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="time">请等待<span id="dd">5</span>秒</div>
+    <script>
+
+        function run(){
+            var s = document.getElementById("dd");//获取dd的dom
+            if(s.innerHTML == 0){// 当dd==0的时候，跳转链接并且暂停函数
+                window.location.href = "http://harbin.jzyzlgs.cn";
+                clearInterval(run());//取消由 setInterval() 设置的 timeout，，这里数字暂停在0这里，否则时间会继续往下减会出现负数。
+                //setInterval调用了run()，所以setInterval的返回ID值是run（）
+            }
+            s.innerHTML = s.innerHTML -1;//从5秒开始，隔一秒跑一次run()然后减1
+        }
+        window.setInterval("run();", 1000); //这段代码的效果是一秒调用一次run()，
+        // setInterval(run, 1000) 和上面的一样
+
+
+        //“run()”是要执行的代码块，1000是时间，默认单位是毫秒
+
+
+    </script>
+
+
+
+</body>
